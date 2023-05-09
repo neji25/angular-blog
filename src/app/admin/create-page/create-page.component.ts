@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/shared/interfaces';
+import {PostsService} from "../../shared/posts.service";
 
 @Component({
   selector: 'app-create-page',
@@ -10,7 +11,7 @@ import { Post } from 'src/app/shared/interfaces';
 export class CreatePageComponent {
   form: FormGroup
 
-  constructor() {
+  constructor(private PostService: PostsService) {
     this.form = new FormGroup<any>({
       title: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
@@ -29,5 +30,9 @@ export class CreatePageComponent {
       author: this.form.value.author,
       date: new Date()
     }
+
+    this.PostService.create(post).subscribe((post) => {
+      console.log(post)
+    })
   }
 }
