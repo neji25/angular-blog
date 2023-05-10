@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {NgModule, Provider} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
@@ -7,9 +7,9 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthServices} from "./shared/services/auth.services";
 import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
+import {SearchPostsPipe} from "./shared/search.pipe";
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import {AuthGuard} from "./shared/services/auth.guard";
     DashboardPageComponent,
     CreatePageComponent,
     EditPageComponent,
+    SearchPostsPipe
   ],
   imports: [
     SharedModule,
@@ -35,7 +36,7 @@ import {AuthGuard} from "./shared/services/auth.guard";
     ])
   ],
   exports: [RouterModule],
-  providers: [AuthServices, AuthGuard]
+  providers: [AuthGuard]
 })
 
 export class AdminModule {}

@@ -32,6 +32,7 @@ export class CreatePageComponent {
     }
 
     this.PostService.create(post).subscribe((post) => {
+      this.form.reset()
       console.log(post)
     })
   }

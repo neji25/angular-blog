@@ -34,6 +34,8 @@ export class LoginPageComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if(params['loginFirst']) {
         this.message = 'Сначала войдите в систему!'
+      } else if (params['authFaild']) {
+        this.message = 'Сессия истекла. Войдите в систему заново'
       }
     })
   }
